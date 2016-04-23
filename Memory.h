@@ -6,7 +6,7 @@
 class Memory{
 protected:
 
-	std::list<Block> memoryLocations;
+	std::list<Block *> memoryLocations;
 
 public:
 	Memory();

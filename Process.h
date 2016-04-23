@@ -7,7 +7,7 @@ class Process:public Block{
 private:
   int id;
 public:	
-  Process(int id,int base,int limit)
+  Process(int id=0,int base=0,int limit=0)
   {
   	this->id=id;
   	this->base=base;

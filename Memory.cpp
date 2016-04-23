@@ -2,12 +2,24 @@
 Memory::Memory()
 {
 	Block b(0,1024);
-	memoryLocations.insert(memoryLocations.end(),b);
+	memoryLocations.insert(memoryLocations.end(),&b);
 }
 bool Memory::deallocateMemory(int processID)
 {
-	for(int blockIndex=0;blockIndex<memoryLocations.size();blockIndex++)
+	/*
+	for(std::list<Block *>::iterator blk=memoryLocations.begin();blk!=memoryLocations.end();blk++)
 	{
-		//check if block has id 
+		if((*blk).isOccupied())
+		{
+			if((*blk).getId()==processID)
+			{
+				Block b((*blk).getBase(),(*blk).getLimit());
+				//check if block before is a hole
+				
+				return true;
+			}	
+		}
 	}
+	*/
+	return false;
 }

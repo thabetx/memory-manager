@@ -2,22 +2,22 @@
 #include "Process.h"
 bool FirstFitMemory::allocateMemory(int processID , int processSize)
 {
-	for(std::list<Block>::iterator blk=memoryLocations.begin();blk!=memoryLocations.end();blk++)
+	for(std::list<Block *>::iterator blk=memoryLocations.begin();blk!=memoryLocations.end();blk++)
 	{
-		if(!(*blk).isOccupied())
+		if(!(*blk)->isOccupied())
 		{
-			if((*blk).getLimit()>processSize)
+			if((*blk)->getLimit()>processSize)
 			{
-				Process p(processID,(*blk).getBase(),processSize);
-				(*blk).setBase((*blk).getBase()+processSize);
-				(*blk).setLimit((*blk).getLimit()-processSize);
-				memoryLocations.insert(blk,p);
+				Process p(processID,(*blk)->getBase(),processSize);
+				(*blk)->setBase((*blk)->getBase()+processSize);
+				(*blk)->setLimit((*blk)->getLimit()-processSize);
+				memoryLocations.insert(blk,&p);
 				return true;
 			}
-			else if((*blk).getLimit()==processSize)
+			else if((*blk)->getLimit()==processSize)
 			{
-				Process p(processID,(*blk).getBase(),processSize);
-				memoryLocations.insert(blk,p);
+				Process p(processID,(*blk)->getBase(),processSize);
+				memoryLocations.insert(blk,&p);
 				blk++;
 				memoryLocations.erase(blk);
 				return true;
