@@ -2,10 +2,11 @@
 #define BLOCK
 
 class Block{
-private:
+protected:
   int base;
   int limit;
 public:
+  Block(int base=0,int limit=0);
   virtual int getId();
   virtual bool isOccupied();
   void setBase(int b);

@@ -1,15 +1,17 @@
 #ifndef MEMORY
 #define MEMORY
-#include <vector>
+#include <list>
 #include "Block.h"
+
 class Memory{
 protected:
 
-std::vector<Block> memoryLocations;
+	std::list<Block> memoryLocations;
 
 public:
-virtual bool allocateMemory(int processID , int processSize)=0;
-bool deallocateMemory(int processID);
+	Memory();
+	virtual bool allocateMemory(int processID , int processSize)=0;
+	bool deallocateMemory(int processID);
 
 };
 #endif

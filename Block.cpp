@@ -1,5 +1,9 @@
 #include "Block.h"
-
+Block::Block(int base,int limit)
+{
+	this->base=base;
+	this->limit=limit;
+}
 int Block::getId(){
   return -1;
 }
