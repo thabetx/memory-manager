@@ -8,16 +8,16 @@ bool FirstFitMemory::allocateMemory(int processID , int processSize)
 		{
 			if((*blk)->getLimit()>processSize)
 			{
-				Process p(processID,(*blk)->getBase(),processSize);
+				Process * p=new Process(processID,(*blk)->getBase(),processSize);
 				(*blk)->setBase((*blk)->getBase()+processSize);
 				(*blk)->setLimit((*blk)->getLimit()-processSize);
-				memoryLocations.insert(blk,&p);
+				memoryLocations.insert(blk,p);
 				return true;
 			}
 			else if((*blk)->getLimit()==processSize)
 			{
-				Process p(processID,(*blk)->getBase(),processSize);
-				memoryLocations.insert(blk,&p);
+				Process *p=new Process(processID,(*blk)->getBase(),processSize);
+				memoryLocations.insert(blk,p);
 				blk++;
 				memoryLocations.erase(blk);
 				return true;

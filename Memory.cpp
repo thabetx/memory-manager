@@ -1,8 +1,8 @@
 #include "Memory.h"
 Memory::Memory()
 {
-	Block b(0,1024);
-	memoryLocations.insert(memoryLocations.end(),&b);
+	Block *b=new Block(0,1024);
+	memoryLocations.insert(memoryLocations.end(),b);
 }
 bool Memory::deallocateMemory(int processID)
 {
