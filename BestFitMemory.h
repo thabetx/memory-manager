@@ -1,0 +1,4 @@
+#ifndef BESTFITMEMORY
+#define BESTFITMEMORY
+
+#endif
