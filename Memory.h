@@ -2,6 +2,8 @@
 #define MEMORY
 #include <list>
 #include "Block.h"
+#include <iostream>
+#include <iomanip>
 
 class Memory{
 protected:
@@ -12,6 +14,7 @@ public:
 	Memory();
 	virtual bool allocateMemory(int processID , int processSize)=0;
 	bool deallocateMemory(int processID);
+  void print();
 
 };
 #endif
