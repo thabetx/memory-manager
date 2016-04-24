@@ -6,21 +6,32 @@ Memory::Memory()
 }
 bool Memory::deallocateMemory(int processID)
 {
-	/*
-	for(std::list<Block *>::iterator blk=memoryLocations.begin();blk!=memoryLocations.end();blk++)
-	{
-		if((*blk).isOccupied())
-		{
-			if((*blk).getId()==processID)
-			{
-				Block b((*blk).getBase(),(*blk).getLimit());
-				//check if block before is a hole
-				
-				return true;
-			}	
-		}
-	}
-	*/
+  for(auto it=memoryLocations.begin();it!=memoryLocations.end();it++){
+    if((*it)->isOccupied()&&(*it)->getId()==processID){
+      auto process=it;
+      auto previous=it;previous--;
+      auto next=it;next++;
+
+      int base=(*process)->getBase();
+      int limit=(*process)->getLimit();
+
+      if((*previous)!=NULL&&!(*previous)->isOccupied()){
+        base=(*previous)->getBase();
+        limit+=(*process)->getLimit();
+        memoryLocations.erase(previous);
+      }
+      
+      if((*next)!=NULL&&!(*next)->isOccupied()){
+        limit+=(*next)->getLimit();
+        memoryLocations.erase(next);
+      }
+
+      Block * b = new Block(base,limit);
+      memoryLocations.insert(process,b);
+      memoryLocations.erase(process);
+      return true;
+    }
+  }
 	return false;
 }
 void Memory::print(){
