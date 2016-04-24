@@ -43,6 +43,7 @@ bool Memory::deallocateMemory(int processID)
   return false;
 }
 void Memory::print(){
+  std::cout<<std::setw(36)<<std::setfill('_')<<"_"<<std::setfill(' ')<<std::endl;
   std::cout<<std::setw(10)<<std::left<<"Location"<<"|"<<"State"<<std::endl;
   std::cout<<std::setfill('-')<<std::setw(10)<<"-"<<"+"<<std::setw(25)<<"-"<<std::setfill(' ')<<std::endl;
   for(auto i:memoryLocations){
@@ -53,4 +54,5 @@ void Memory::print(){
       std::cout<<"free"<<std::endl;
     }
   }
+  std::cout<<std::setw(36)<<std::setfill('-')<<"-"<<std::setfill(' ')<<std::endl;
 }
