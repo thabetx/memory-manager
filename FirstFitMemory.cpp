@@ -18,10 +18,8 @@ bool FirstFitMemory::allocateMemory(int processID , int processSize)
 			{
 				Process *p=new Process(processID,(*blk)->getBase(),processSize);
 				memoryLocations.insert(blk,p);
-				blk++;
 				memoryLocations.erase(blk);
 				return true;
-
 			}
 		}
 	}

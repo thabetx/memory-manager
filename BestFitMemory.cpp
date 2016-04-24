@@ -26,8 +26,7 @@ bool BestFitMemory::allocateMemory(int processID , int processSize)
 		(*bestLocation)->setBase((*bestLocation)->getBase() + processSize);
 		(*bestLocation)->setLimit((*bestLocation)->getLimit() - processSize);
 		memoryLocations.insert(bestLocation, p);
-		bestLocation++;
-		if (bestLocation != memoryLocations.end() && (*bestLocation)->getLimit() == 0)
+		if ((*bestLocation)->getLimit() == 0)
 		{
 			memoryLocations.erase(bestLocation);
 		}

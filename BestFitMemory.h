@@ -2,7 +2,7 @@
 #define BESTFITMEMORY
 
 #include "Memory.h"
-
+#include "Process.h"
 class BestFitMemory : public Memory{
 private:
 
