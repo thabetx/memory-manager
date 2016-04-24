@@ -9,37 +9,38 @@ bool Memory::deallocateMemory(int processID)
   for(auto it=memoryLocations.begin();it!=memoryLocations.end();it++){
     if((*it)->isOccupied()&&(*it)->getId()==processID){
       auto process=it;
-	  auto previous = it,next=it;	 
+      auto previous=it;
+      auto next=it;
 
       int base=(*process)->getBase();
       int limit=(*process)->getLimit();
 
-	  if (it != memoryLocations.begin())
-	  {
-		  previous--;
-		  if ((*previous) != NULL&&!(*previous)->isOccupied()){
-			  base = (*previous)->getBase();
-			  limit += (*process)->getLimit();
-			  memoryLocations.erase(previous);
-		  }
-	  }
+    if (it != memoryLocations.begin())
+    {
+      previous--;
+      if (!(*previous)->isOccupied()){
+        base = (*previous)->getBase();
+        limit += (*previous)->getLimit();
+        memoryLocations.erase(previous);
+      }
+    }
 
-	  if (it != --memoryLocations.end())
-	  {
-		  next++;
-		  if ((*next) != NULL&&!(*next)->isOccupied()){
-			  limit += (*next)->getLimit();
-			  memoryLocations.erase(next);
-		  }
-	  }
+    if (it != --memoryLocations.end())
+    {
+      next++;
+      if (!(*next)->isOccupied()){
+        limit += (*next)->getLimit();
+        memoryLocations.erase(next);
+      }
+    }
 
-      Block * b = new Block(base,limit);
+    Block * b = new Block(base,limit);
       memoryLocations.insert(process,b);
       memoryLocations.erase(process);
       return true;
     }
   }
-	return false;
+  return false;
 }
 void Memory::print(){
   std::cout<<std::setw(10)<<std::left<<"Location"<<"|"<<"State"<<std::endl;
