@@ -1,7 +1,7 @@
 #include "Process.h"
 
-void Process::setId(int i){
-  id=i;
+void Process::setId(int id){
+  this->id=id;
 }
 
 int Process::getId(){

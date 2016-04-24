@@ -12,16 +12,16 @@ bool Block::isOccupied(){
   return false;
 }
 
-void Block::setBase(int b){
-  base=b;
+void Block::setBase(int base){
+  this->base=base;
 }
 
 int Block::getBase(){
   return base;
 }
 
-void Block::setLimit(int l){
-  limit=l;
+void Block::setLimit(int limit){
+  this->limit=limit;
 }
 
 int Block::getLimit(){

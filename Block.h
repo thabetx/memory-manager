@@ -9,9 +9,9 @@ public:
   Block(int base=0,int limit=0);
   virtual int getId();
   virtual bool isOccupied();
-  void setBase(int b);
+  void setBase(int base);
   int getBase();
-  void setLimit(int l);
+  void setLimit(int limit);
   int getLimit();
 };
 

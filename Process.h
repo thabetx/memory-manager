@@ -13,7 +13,7 @@ public:
   	this->base=base;
   	this->limit=limit;
   }	
-  void setId(int i);
+  void setId(int id);
   int getId();
   bool isOccupied();
 };
