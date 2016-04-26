@@ -6,59 +6,55 @@
 using namespace std;
 
 int main(){
-  FirstFitMemory *memFirst = new FirstFitMemory();
-  
-  memFirst->allocateMemory(1,1024);
-  memFirst->allocateMemory(5,6);
-  memFirst->deallocateMemory(1);
-  
-  memFirst->allocateMemory(2,2);
-  memFirst->allocateMemory(3,3);
-  memFirst->allocateMemory(4,4);
-  memFirst->allocateMemory(5,5);
 
-  memFirst->deallocateMemory(2);
-  memFirst->deallocateMemory(4);
-  memFirst->deallocateMemory(3);
+  int type;
+  cout<<"Enter the type of the memory (1- First Fit, 2-Best Fit, 3-Worst Fit): ";
+  cin>>type;
+  Memory *memory;
+  if(type==1){
+    memory = new FirstFitMemory;
+  }else if(type==2){
+    memory = new BestFitMemory;
+  }else if(type==3){
+    memory = new WorstFitMemory;
+  }else{
+    cout<<"Type is invalid.";
+    return 0;
+  }
 
-  memFirst->allocateMemory(6, 3);
-  
-  memFirst->print();
+  cout<<"Memory was successfully created"<<endl;
+  memory->print();
 
-  BestFitMemory *memBest = new BestFitMemory;
+  int numberOfQueries, id,limit;
+  cout<<"Enter the number of queries: ";
+  cin>>numberOfQueries;
 
-  memBest->allocateMemory(1, 1024);
-  memBest->deallocateMemory(1);
-
-  memBest->allocateMemory(2,2);
-  memBest->allocateMemory(3,3);
-  memBest->allocateMemory(4,4);
-  memBest->allocateMemory(5,5);
-
-  memBest->deallocateMemory(2);
-  memBest->deallocateMemory(4);
-  memBest->deallocateMemory(3);
-
-  memBest->allocateMemory(6, 3);
-
-  memBest->print();
-
-  WorstFitMemory *memWorst = new WorstFitMemory;
-
-  memWorst->allocateMemory(1,1024);
-  memWorst->allocateMemory(5,6);
-  memWorst->deallocateMemory(1);
-
-  memWorst->allocateMemory(2,2);
-  memWorst->allocateMemory(3,3);
-  memWorst->allocateMemory(4,4);
-  memWorst->allocateMemory(5,5);
-
-  memWorst->deallocateMemory(2);
-  memWorst->deallocateMemory(4);
-  memWorst->deallocateMemory(3);
-
-  memWorst->allocateMemory(6, 3);
-
-  memWorst->print();
+  for(int i=0;i<numberOfQueries;i++){
+    int query_type;
+    cout<<"Enter the query type (1-Allocate, 2- Deallocate): ";
+    cin>>query_type;
+    if(query_type==1){
+      cout<<"Enter the id of the process: ";
+      cin>>id;
+      cout<<"Enter the size of the process: ";
+      cin>>limit;
+      if(memory->allocateMemory(id,limit)){
+        cout<<"The Process was successfully allocated"<<endl;
+        memory->print();
+      }
+      else{
+        cout<<"No enough space to add the process"<<endl;
+      }
+    }else if(query_type==2){
+      cout<<"Enter the id of the process to be deleted: ";
+      cin>>id;
+      if(memory->deallocateMemory(id)){
+        cout<<"The process was successfully deallocated"<<endl;
+      }else{
+        cout<<"The process was not found"<<endl;
+      }
+    }else{
+      cout<<"invalid query type";
+    }
+  }
 }
