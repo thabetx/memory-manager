@@ -1,5 +1,8 @@
 #include "BestFitMemory.h"
+BestFitMemory::BestFitMemory(int memorySize):Memory(memorySize)
+{
 
+}
 bool BestFitMemory::allocateMemory(int processID , int processSize)
 {
 	std::list<Block *>::iterator bestLocation = memoryLocations.end();

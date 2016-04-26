@@ -11,7 +11,7 @@ protected:
 	std::list<Block *> memoryLocations;
 
 public:
-	Memory();
+	Memory(int memorySize=1024);
 	virtual bool allocateMemory(int processID , int processSize)=0;
 	bool deallocateMemory(int processID);
   void print();

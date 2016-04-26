@@ -1,5 +1,9 @@
 #include "WorstFitMemory.h"
 #include "Process.h"
+WorstFitMemory::WorstFitMemory(int memorySize):Memory(memorySize)
+{
+
+}
 bool WorstFitMemory::allocateMemory(int processID, int processSize)
 {
 	std::list<Block *>::iterator worstLocation = memoryLocations.end();

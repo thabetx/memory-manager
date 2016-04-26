@@ -1,7 +1,7 @@
 #include "Memory.h"
-Memory::Memory()
+Memory::Memory(int memorySize)
 {
-	Block *b=new Block(0,1024);
+	Block *b=new Block(0,memorySize);
 	memoryLocations.insert(memoryLocations.end(),b);
 }
 bool Memory::deallocateMemory(int processID)

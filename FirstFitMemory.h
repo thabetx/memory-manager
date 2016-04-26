@@ -6,6 +6,7 @@ class FirstFitMemory: public Memory{
 private:
 
 public:
+FirstFitMemory(int memorySize=1024);
 bool allocateMemory(int processID , int processSize);
 
 };

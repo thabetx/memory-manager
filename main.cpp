@@ -8,30 +8,35 @@ using namespace std;
 int main(){
 
   int type;
+  int memorySize;
+  cout<<"Enter the required memory size: ";
+  cin>>memorySize;
+  if(memorySize<=0)
+  {
+    cout<<"Size is invalid.";
+    return 0;
+  }
+  Memory *memory;
   cout<<"Enter the type of the memory (1- First Fit, 2-Best Fit, 3-Worst Fit): ";
   cin>>type;
-  Memory *memory;
   if(type==1){
-    memory = new FirstFitMemory;
+    memory = new FirstFitMemory(memorySize);
   }else if(type==2){
-    memory = new BestFitMemory;
+    memory = new BestFitMemory(memorySize);
   }else if(type==3){
-    memory = new WorstFitMemory;
+    memory = new WorstFitMemory(memorySize);
   }else{
     cout<<"Type is invalid.";
     return 0;
   }
-
   cout<<"Memory was successfully created"<<endl;
   memory->print();
 
-  int numberOfQueries, id,limit;
-  cout<<"Enter the number of queries: ";
-  cin>>numberOfQueries;
-
-  for(int i=0;i<numberOfQueries;i++){
+  int id,limit;
+  
+  for(;;){
     int query_type;
-    cout<<"Enter the query type (1-Allocate, 2- Deallocate): ";
+    cout<<"Enter the query type (1- Allocate, 2- Deallocate, 3- Finish): ";
     cin>>query_type;
     if(query_type==1){
       cout<<"Enter the id of the process: ";
@@ -50,10 +55,17 @@ int main(){
       cin>>id;
       if(memory->deallocateMemory(id)){
         cout<<"The process was successfully deallocated"<<endl;
-      }else{
+        memory->print();
+      }
+      else{
         cout<<"The process was not found"<<endl;
       }
-    }else{
+    }
+    
+    else if(query_type==3){
+        return 0;
+      }
+    else{
       cout<<"invalid query type";
     }
   }

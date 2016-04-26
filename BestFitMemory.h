@@ -7,6 +7,7 @@ class BestFitMemory : public Memory{
 private:
 
 public:
+BestFitMemory(int memorySize=1024);
 bool allocateMemory(int processID , int processSize);
 
 };
