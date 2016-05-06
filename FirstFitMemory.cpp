@@ -1,10 +1,6 @@
 #include "FirstFitMemory.h"
-#include "Process.h"
-
-FirstFitMemory::FirstFitMemory(int memorySize):Memory(memorySize)
-{
-
-}
+FirstFitMemory::FirstFitMemory(int memorySize):Memory(memorySize) {}
+FirstFitMemory::FirstFitMemory(std::vector<Block*>& initialBlocks):Memory(initialBlocks) {}
 bool FirstFitMemory::allocateMemory(int processID , int processSize)
 {
 	for(std::list<Block *>::iterator blk=memoryLocations.begin();blk!=memoryLocations.end();blk++)

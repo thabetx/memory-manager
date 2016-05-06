@@ -4,6 +4,11 @@ Memory::Memory(int memorySize)
 	Block *b=new Block(0,memorySize);
 	memoryLocations.insert(memoryLocations.end(),b);
 }
+Memory::Memory(std::vector<Block*>& initialBlocks)
+{
+  for(auto &i:initialBlocks)
+    memoryLocations.insert(memoryLocations.end(),i);
+}
 bool Memory::deallocateMemory(int processID)
 {
   for(auto it=memoryLocations.begin();it!=memoryLocations.end();it++){
