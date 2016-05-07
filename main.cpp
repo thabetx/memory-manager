@@ -42,14 +42,14 @@ int main(){
   }
 
   vector<Block*>initial_blocks;
-  int process_counter=1;
+  int process_counter=-1;
   if(merged_holes[0].first!=0){
-    initial_blocks.push_back(new Process(process_counter++,0,merged_holes[0].first));
+    initial_blocks.push_back(new Process(process_counter,0,merged_holes[0].first));
   }
   for(int i=0;i<merged_holes.size();i++){
     initial_blocks.push_back(new Block(merged_holes[i].first,merged_holes[i].second));
     if(i==merged_holes.size()-1)break;
-    initial_blocks.push_back(new Process(process_counter++,merged_holes[i].first+merged_holes[i].second,merged_holes[i+1].first-(merged_holes[i].first+merged_holes[i].second)));
+    initial_blocks.push_back(new Process(process_counter,merged_holes[i].first+merged_holes[i].second,merged_holes[i+1].first-(merged_holes[i].first+merged_holes[i].second)));
   }
 
   Memory *memory;

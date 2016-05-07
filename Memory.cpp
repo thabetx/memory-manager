@@ -11,6 +11,10 @@ Memory::Memory(std::vector<Block*>& initialBlocks)
 }
 bool Memory::deallocateMemory(int processID)
 {
+  if(processID==-1)
+  {
+    return false;
+  }
   for(auto it=memoryLocations.begin();it!=memoryLocations.end();it++){
     if((*it)->isOccupied()&&(*it)->getId()==processID){
       auto process=it;
@@ -54,9 +58,12 @@ void Memory::print(){
   for(auto i:memoryLocations){
     std::cout<<std::setw(10)<<std::to_string(i->getBase())+"->"+std::to_string(i->getBase()+i->getLimit()-1)<<"|";
     if(i->isOccupied()){
-      std::cout<<"Ocuupied by Process "<<i->getId()<<std::endl;
+       if(i->getId()==-1)
+        std::cout<<" Unaccessable Memory "<<" (Size: "<<i->getLimit()<<")"<<std::endl;
+       else
+        std::cout<<" Ocuupied by Process "<<i->getId()<<" (Size: "<<i->getLimit()<<")"<<std::endl;
     }else{
-      std::cout<<"free"<<std::endl;
+      std::cout<<" Free "<<" (Size: "<<i->getLimit()<<")"<<std::endl;
     }
   }
   std::cout<<std::setw(36)<<std::setfill('-')<<"-"<<std::setfill(' ')<<std::endl;
